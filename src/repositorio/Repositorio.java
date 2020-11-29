@@ -23,7 +23,15 @@ public class Repositorio {
 		}
 		return null;
 	}
-
+	public Produto localizarProduto(String nome) {
+		for(Produto p : produtos) {
+			if(p.getNome().equals(nome)){
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public void adicionar(Pedido p){
 		pedidos.add(p);
 	}

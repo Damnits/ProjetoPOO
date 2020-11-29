@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 public class Cliente {
+
 	public String telefone;
 	public String nome;
 	public String endereco;
@@ -37,5 +38,9 @@ public class Cliente {
 	public void setPedidos(ArrayList<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
+	@Override
+	public String toString() {
+		return "Cliente [telefone=" + telefone + ", nome=" + nome + ", endereco=" + endereco + ", pedidos=" + pedidos
+				+ "]";
+	}
 }
