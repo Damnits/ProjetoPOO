@@ -57,7 +57,7 @@ public class AplicacaoConsole1 {
 			Fachada.adicionarProdutoPedido(5, 3);	
 			Fachada.adicionarProdutoPedido(5, 4);
 			Fachada.adicionarProdutoPedido(5, 5);
-
+			
 			listarProdutos("");
 			listarProdutos("i"); //contem a letra i  (contains)
 			listarClientes();

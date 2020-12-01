@@ -36,15 +36,17 @@ public class Fachada {
 		ArrayList<Pedido> listaPedidos = repositorio.getPedidos();
 		return listaPedidos;
 	}
+	
 	public static ArrayList<Pedido> listarPedidos(String telefone, int tipo){
 		Cliente cliente = repositorio.localizaClientepTelef(telefone);
+		System.out.println(cliente);
 		ArrayList<Pedido> listapedido = new ArrayList<>();
-		ArrayList<Pedido> listapedidos = cliente.getPedidos();
-		if(tipo==1) {
+		ArrayList<Pedido> listapedidos = cliente.getPedidos();		
+		if(tipo==1) {	
 			for(Pedido p : listapedidos) {
 				if(p.isPago()==true) {
 					listapedido.add(p);
-				}
+					}
 			}
 			return listapedido;
 		}
@@ -54,6 +56,7 @@ public class Fachada {
 					listapedido.add(p);
 				}
 			}
+
 			return listapedido;
 		}
 		else {
@@ -61,6 +64,7 @@ public class Fachada {
 		}
 		
 	}
+	//ok
 	public static Produto cadastrarProduto(String nome, double preco)throws Exception {
 		if(repositorio.localizarProduto(nome)!=null)
 			throw new Exception("Produto já cadastrado");
@@ -70,8 +74,8 @@ public class Fachada {
 		repositorio.adicionar(novoproduto);
 		return novoproduto;
 	}
+	//ok
 	public static Cliente cadastrarCliente(String telefone, String nome, String endereco)throws Exception {
-		
 		if(telefone.matches("^[0-9]"))
 			throw new Exception("Telefone inválido digite só números.");		
 		ArrayList<Pedido> pedidos = new ArrayList<>();
@@ -91,6 +95,7 @@ public class Fachada {
 			throw new Exception("Telefone de cliente não encontrado.");
 		double valortotal = 0;
 		Pedido novopedido = new Pedido(idpedido, data, valortotal, entregador, pago, produtos, cliente);
+		cliente.getPedidos().add(novopedido);
 		repositorio.adicionar(novopedido);
 		return novopedido;
 	}
@@ -105,6 +110,7 @@ public class Fachada {
 			throw new Exception("Telefone de cliente não encontrado.");
 		double valortotal =+ taxa;
 		PedidoExpress novopedido = new PedidoExpress(idpedido, data, valortotal, entregador, pago, produtos, cliente, taxa);
+		cliente.getPedidos().add(novopedido);
 		repositorio.adicionar(novopedido);
 		return novopedido;
 	}
@@ -115,8 +121,10 @@ public class Fachada {
 		Produto produto = repositorio.localizarProduto(idproduto);
 		if(produto==null)
 			throw new Exception("Produto de id "+idproduto+" não encontrado!");
-		pedido.setValortotal(produto.getPreco()+pedido.getValortotal());
+		produto.getPedido().add(pedido);
 		pedido.getProdutos().add(produto);
+		pedido.setValortotal(produto.getPreco()+pedido.getValortotal());
+		
 	}
 	public static void removerProdutoPedido(int idpedido, int idproduto)throws Exception{
 		Pedido pedido = repositorio.localizarPedido(idpedido);

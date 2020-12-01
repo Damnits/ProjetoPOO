@@ -40,7 +40,7 @@ public class Cliente {
 	}
 	@Override
 	public String toString() {
-		return "Cliente [telefone=" + telefone + ", nome=" + nome + ", endereco=" + endereco + ", pedidos=" + pedidos
+		return "Cliente [telefone=" + telefone + ", nome=" + nome + ", endereco=" + endereco + ", pedidos=" 
 				+ "]";
 	}
 }
